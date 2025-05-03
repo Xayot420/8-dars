@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Montserrat', 'Segoe UI', 'Arial', sans-serif;
+    background: linear-gradient(125deg, #13151a 0%, #090b10 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  body::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: 
+      radial-gradient(circle at 50% 50%, 
+        rgba(255, 0, 128, 0.1) 0%,
+        rgba(0, 255, 255, 0.1) 25%,
+        rgba(128, 0, 255, 0.1) 50%,
+        transparent 70%);
+    animation: backgroundPulse 20s linear infinite;
+    opacity: 0.5;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .chart-card {
+    background: rgba(15, 17, 21, 0.85);
+    border-radius: 20px;
+    padding: 40px;
+    position: relative;
+    backdrop-filter: blur(20px);
+    animation: cardPulse 4s ease-in-out infinite alternate;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .chart-card::before,
+  .chart-card::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 22px;
+    background: linear-gradient(45deg,
+      #ff0080,
+      #00ffff,
+      #8000ff,
+      #ff0080,
+      #00ffff);
+    background-size: 400% 400%;
+    z-index: -1;
+    animation: gradientBorder 10s linear infinite;
+  }
+  
+  .chart-card::after {
+    filter: blur(12px);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 36px;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+    position: relative;
+    text-shadow: 
+      0 0 10px rgba(255, 0, 128, 0.8),
+      0 0 20px rgba(0, 255, 255, 0.4),
+      0 0 30px rgba(128, 0, 255, 0.2);
+    animation: titleGlow 2s ease-in-out infinite alternate;
+  }
+  
+  h1::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(8px);
+    opacity: 0.8;
+    animation: titleBlur 4s ease-in-out infinite alternate;
+  }
+  
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 600px;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+  }
+  
+  @keyframes gradientBorder {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  @keyframes cardPulse {
+    0% {
+      box-shadow: 
+        0 0 20px rgba(255, 0, 128, 0.2),
+        0 0 40px rgba(0, 255, 255, 0.1),
+        0 0 60px rgba(128, 0, 255, 0.1);
+    }
+    100% {
+      box-shadow: 
+        0 0 30px rgba(255, 0, 128, 0.3),
+        0 0 60px rgba(0, 255, 255, 0.2),
+        0 0 90px rgba(128, 0, 255, 0.2);
+    }
+  }
+  
+  @keyframes titleGlow {
+    0% {
+      text-shadow: 
+        0 0 10px rgba(255, 0, 128, 0.8),
+        0 0 20px rgba(0, 255, 255, 0.4),
+        0 0 30px rgba(128, 0, 255, 0.2);
+    }
+    100% {
+      text-shadow: 
+        0 0 15px rgba(255, 0, 128, 1),
+        0 0 30px rgba(0, 255, 255, 0.6),
+        0 0 45px rgba(128, 0, 255, 0.4);
+    }
+  }
+  
+  @keyframes titleBlur {
+    0% { filter: blur(8px); opacity: 0.8; }
+    100% { filter: blur(12px); opacity: 0.6; }
+  }
+  
+  @keyframes backgroundPulse {
+    0% {
+      transform: translate(-25%, -25%) rotate(0deg);
+      background-position: 0% 0%;
+    }
+    100% {
+      transform: translate(-25%, -25%) rotate(360deg);
+      background-position: 100% 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .chart-card {
+      padding: 20px;
+    }
+  
+    h1 {
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      padding: 10px;
+    }
+  
+    h1 {
+      font-size: 24px;
+      letter-spacing: 2px;
+    }
+  
+    .chart-card {
+      padding: 15px;
+    }
+  }
